@@ -4,18 +4,17 @@ import AuthContext from '../context/AuthContext';
 const AuthForm = ({ isLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [role, setRole] = useState('end-user');
     const { login, register } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (isLogin) {
-            if (username != '' && password != '')
+            if (username !== '' && password !== '')
                 login(username, password);
             else
                 alert("Please fill all fields")
         } else {
-            if (username != '' && password != '')
+            if (username !== '' && password !== '')
                 register(username, password, 'end-user');
             else
                 alert("Please fill all fields")

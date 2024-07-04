@@ -19,7 +19,7 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            {window.location.pathname != '/login' &&<Link to="/login" className="mr-4">Login</Link>}
+                            {window.location.pathname !== '/login' &&<Link to="/login" className="mr-4">Login</Link>}
                             <Link to="/register">Register</Link>
                         </>
                     )}

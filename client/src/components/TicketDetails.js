@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
@@ -52,7 +52,7 @@ const TicketDetails = () => {
 
     const handleReplySubmit = async (e) => {
         e.preventDefault();
-        if(message != ''){
+        if(message !== ''){
             const user_id = localStorage.getItem('user');
         const formData = new FormData()
         formData.append('ticket_id', id);
@@ -92,7 +92,7 @@ const TicketDetails = () => {
     }
 
     const assignTicket = async (e) => {
-        if(e.target.value != "not assigned"){
+        if(e.target.value !== "not assigned"){
         setTicket({ ...ticket, assigned_to: parseInt(e.target.value) });
         try {
             axios.defaults.headers.common['x-auth-token'] = localStorage.getItem('token');
@@ -127,7 +127,7 @@ const TicketDetails = () => {
                         </div>
                         {localStorage.getItem('role') === 'admin' && <div className="grid grid-cols-2 gap-1 mb-4">
                             <label className="block mb-1 mt-[7%] text-lg text-blue-500"> Assigned to :</label>
-                           {supports.length != 0 ? <select
+                           {supports.length !== 0 ? <select
                                 value={ticket.assigned_to ? ticket.assigned_to : "not assigned"}
                                 onChange={assignTicket}
                                 className="px-4 py-2 border rounded-md"
@@ -145,6 +145,8 @@ const TicketDetails = () => {
                 </div>
             )}
             <div className="mt-10">
+                {replies.length > 0 &&
+                <>
                 <h2 className="text-xl mb-4">Replies</h2>
                 <ul>
                     {replies.map(reply => (
@@ -159,6 +161,7 @@ const TicketDetails = () => {
                         </li>
                     ))}
                 </ul>
+                </>}
                 <button className="px-4 py-2 bg-green-500 text-white rounded-md mb-4" onClick={() => { setAddReply(true) }}>Add Reply</button>
 
                 {isAddReply && <>

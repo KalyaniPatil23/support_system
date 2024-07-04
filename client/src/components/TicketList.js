@@ -22,19 +22,20 @@ const TicketList = () => {
     return (
         <div className="max-w-4xl mx-auto mt-10">
             <h1 className="text-4xl mb-4 text-blue-500">Tickets</h1>
-            <div className="bg-white grid grid-cols-2 gap-4 mb-4 mt-2">
+            {tickets.length > 0 ? <div className="bg-white grid grid-cols-2 gap-4 mb-4 mt-2">
                 {tickets.map(ticket => (
                     <div key={ticket.id} className=" max-w-sm border-t border-gray-200 shadow overflow-hidden sm:rounded-md">
                         <Link to={`/tickets/${ticket.id}`} className="block px-4 py-4">
                             <div className="text-lg text-green-500">{ticket.title}</div>
                             <div className="text-sm text-gray-500">{ticket.description}</div>
                             <div className="text-sm text-gray-500">Status: {ticket.status}</div>
-                            {localStorage.getItem('role') != 'tech-support' && <div className="text-sm text-gray-500">Assigned to : {ticket.assign ? ticket.assign : "Not assigned yet."}</div>}
+                            {localStorage.getItem('role') !== 'tech-support' && <div className="text-sm text-gray-500">Assigned to : {ticket.assign ? ticket.assign : "Not assigned yet."}</div>}
                             <div className="text-sm text-gray-500">Created by : {ticket.creator} at {format(new Date(ticket.created_at), 'MMMM do yyyy, h:mm:ss a')}</div>
                         </Link>
                     </div>
                 ))}
-            </div>
+            </div>:
+            <div className="text-sm text-gray-500">Tickets Not Availabel.</div>}
         </div>
     );
 };
