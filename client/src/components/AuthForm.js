@@ -10,9 +10,15 @@ const AuthForm = ({ isLogin }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (isLogin) {
-            login(username, password);
+            if (username != '' && password != '')
+                login(username, password);
+            else
+                alert("Please fill all fields")
         } else {
-            register(username, password, role);
+            if (username != '' && password != '')
+                register(username, password, 'end-user');
+            else
+                alert("Please fill all fields")
         }
     };
 
@@ -36,7 +42,7 @@ const AuthForm = ({ isLogin }) => {
                     className="w-full px-4 py-2 border rounded-md"
                 />
             </div>
-            {!isLogin && (
+            {/* {!isLogin && (
                 <div className="mb-4">
                     <label className="block mb-1">Role</label>
                     <select
@@ -49,7 +55,7 @@ const AuthForm = ({ isLogin }) => {
                         <option value="admin">Admin</option>
                     </select>
                 </div>
-            )}
+            )} */}
             <button type="submit" className="w-full px-4 py-2 bg-blue-500 text-white rounded-md">
                 {isLogin ? 'Login' : 'Register'}
             </button>

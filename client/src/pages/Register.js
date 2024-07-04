@@ -4,7 +4,7 @@ import AuthForm from '../components/AuthForm';
 const Register = () => {
     return (
         <div>
-            <h1 className="text-2xl text-center mt-10">Register</h1>
+            <h1 className="text-2xl text-blue-500 font-bold text-center mt-10">Register</h1>
             <AuthForm isLogin={false} />
         </div>
     );

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import AuthContext from '../context/AuthContext';
+import { format } from 'date-fns';
 
 const TicketDetails = () => {
     const { id } = useParams();
@@ -11,7 +11,6 @@ const TicketDetails = () => {
     const [message, setMessage] = useState('');
     const [attachment, setAttachment] = useState(null);
     const [isAddReply, setAddReply] = useState(false);
-    const { user } = useContext(AuthContext);
 
     const fetchTicketDetails = async () => {
         try {
@@ -151,7 +150,7 @@ const TicketDetails = () => {
                     {replies.map(reply => (
                         <li key={reply.id} className="mb-4 p-4 bg-gray-100 rounded-md">
                             <p>{reply.message}</p>
-                            <p className="text-sm text-gray-500">By: {reply.reply_by} at {reply.created_at}</p>
+                            <p className="text-sm text-gray-500">By: {reply.reply_by} At {format(new Date(reply.created_at), 'MMMM do yyyy, h:mm:ss a')}</p>
                             {reply.attachment && (
                             <a href={`http://localhost:5000/${reply.attachment}`} className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">
                                 View Attachment

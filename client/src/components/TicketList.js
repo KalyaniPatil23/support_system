@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { format } from 'date-fns';
 
 const TicketList = () => {
     const [tickets, setTickets] = useState([]);
@@ -29,7 +30,7 @@ const TicketList = () => {
                             <div className="text-sm text-gray-500">{ticket.description}</div>
                             <div className="text-sm text-gray-500">Status: {ticket.status}</div>
                             {localStorage.getItem('role') != 'tech-support' && <div className="text-sm text-gray-500">Assigned to : {ticket.assign ? ticket.assign : "Not assigned yet."}</div>}
-                            <div className="text-sm text-gray-500">Created by : {ticket.creator}</div>
+                            <div className="text-sm text-gray-500">Created by : {ticket.creator} at {format(new Date(ticket.created_at), 'MMMM do yyyy, h:mm:ss a')}</div>
                         </Link>
                     </div>
                 ))}
