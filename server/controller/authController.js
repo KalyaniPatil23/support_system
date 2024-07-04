@@ -63,3 +63,14 @@ exports.me = async (req, res) => {
         res.status(500).json({ error: 'Server error' });
     }
 };
+
+exports.getSupports = async (req, res) => {
+    try {
+        const result = await db.query('SELECT * FROM users WHERE role = ?', ['tech-support']);
+        const row = result[0];
+        if (row.length === 0) return res.status(400).send('Tech support not availabel.');
+        res.send({ row });
+    } catch (err) {
+        res.status(500).send('Server error');
+    }
+};

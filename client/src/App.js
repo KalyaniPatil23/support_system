@@ -5,6 +5,9 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Tickets from './pages/Tickets';
+import TicketForm from './components/TicketForm';
+import Ticket from './pages/Ticket';
 
 const App = () => {
 
@@ -17,6 +20,9 @@ const App = () => {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/" element={token ? <Home /> : <Login/>} />
+                        <Route path="/tickets" element={<Tickets />} />
+                        <Route path="/tickets/new" element={<TicketForm />} />
+                        <Route path="/tickets/:id" element={<Ticket />} />
                     </Routes>
                 </div>
         </AuthProvider>

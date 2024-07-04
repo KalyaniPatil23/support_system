@@ -3,8 +3,11 @@ const app = express();
 const apiRoutes = require('./routes/api');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 
 app.use(cors())
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Middleware
 app.use(bodyParser.json());
